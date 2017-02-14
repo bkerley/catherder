@@ -11,7 +11,17 @@ module Catherder
     end
 
     def update
+      if window.button_down? Gosu::KbLeft
+        self.x -= 1
+      elsif window.button_down? Gosu::KbRight
+        self.x += 1
+      end
 
+      if window.button_down? Gosu::KbUp
+        self.y -= 1
+      elsif window.button_down? Gosu::KbDown
+        self.y += 1
+      end
     end
   end
 end
