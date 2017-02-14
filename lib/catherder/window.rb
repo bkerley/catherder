@@ -12,7 +12,7 @@ module Catherder
                          human: self.human,
                          bowl: self.bowl)
 
-      @sprites = [cat, human, bowl]
+      @sprites = [bowl, cat, human]
     end
 
     def update
