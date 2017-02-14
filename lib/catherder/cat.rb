@@ -25,6 +25,8 @@ module Catherder
     end
 
     def update
+      check_win
+
       case state
       when :waiting
         waiting_update
@@ -54,6 +56,13 @@ module Catherder
     end
 
     private
+    def check_win
+      return if distance_to(bowl) > PROXIMITY
+
+      puts "om nom nom nom you win"
+      exit 0
+    end
+
     def take_off
       target_x = rand(window.width - image.width)
       target_y = rand(window.height - image.height)
