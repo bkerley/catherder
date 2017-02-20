@@ -6,13 +6,14 @@ module Catherder
       super 800, 600, false
       self.caption = 'cat herder'
 
+      floor = Floor.new(self)
       self.human = Human.new(self)
       self.bowl = Bowl.new(self)
       self.cat = Cat.new(window: self,
                          human: self.human,
                          bowl: self.bowl)
 
-      @sprites = [bowl, cat, human]
+      @sprites = [floor, bowl, cat, human]
     end
 
     def update

@@ -16,7 +16,15 @@ module Catherder
     end
 
     def load_image(filename)
-      self.image = Gosu::Image.new window, "priv/#{filename}", true
+      self.image = Gosu::Image.new(window,
+                                   "priv/#{filename}",
+                                   false)
+    end
+
+    def load_background_image(filename)
+      self.image = Gosu::Image.new(window,
+                                   "priv/#{filename}",
+                                   true)
     end
   end
 end
