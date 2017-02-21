@@ -63,8 +63,8 @@ module Catherder
     def check_win
       return if distance_to(bowl) > PROXIMITY
 
-      puts "om nom nom nom you win"
-      exit 0
+      window.win!
+      self.state = :won
     end
 
     def take_off

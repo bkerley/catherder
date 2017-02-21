@@ -1,7 +1,7 @@
 require 'pp'
 require 'gosu'
 
-%w{window human cat bowl floor}.each do |f|
+%w{window human cat bowl floor congratulations}.each do |f|
   require "catherder/#{f}"
 end
 

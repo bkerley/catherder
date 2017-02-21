@@ -1,6 +1,6 @@
 module Catherder
   class Window < Gosu::Window
-    attr_accessor :human, :cat, :bowl
+    attr_accessor :human, :cat, :cats, :bowl, :congratulations
 
     def initialize
       super 800, 600, false
@@ -14,6 +14,7 @@ module Catherder
                          bowl: self.bowl)
 
       @sprites = [floor, bowl, cat, human]
+      self.congratulations = Congratulations.new(self)
     end
 
     def update
@@ -22,6 +23,10 @@ module Catherder
 
     def draw
       @sprites.each(&:draw)
+    end
+
+    def win!
+      congratulations.win!
     end
   end
 end
