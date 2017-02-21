@@ -8,7 +8,7 @@ module Catherder
 
     PROXIMITY = 100
 
-    SPEED = 5
+    SPEED = 10
 
     def initialize(window: , human: , bowl: )
       super window
@@ -25,6 +25,8 @@ module Catherder
     end
 
     def update
+      super
+
       check_win
 
       case state
@@ -50,9 +52,11 @@ module Catherder
         return
       end
 
-      self.step_count -= 1
-      self.x += step_x
-      self.y += step_y
+      adjusted_speed = SPEED * elapsed_frames
+
+      self.step_count -= elapsed_frames
+      self.x += adjusted_speed * step_x
+      self.y += adjusted_speed * step_y
     end
 
     private
@@ -73,8 +77,8 @@ module Catherder
       angle = Math.atan2(delta_y, delta_x)
       magnitude = Math.sqrt((delta_x ** 2) + (delta_y ** 2))
 
-      self.step_x = -SPEED * Math.cos(angle)
-      self.step_y = -SPEED * Math.sin(angle)
+      self.step_x = -Math.cos(angle)
+      self.step_y = -Math.sin(angle)
 
 
       self.step_count = magnitude / SPEED

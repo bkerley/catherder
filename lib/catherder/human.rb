@@ -2,7 +2,8 @@ require 'catherder/sprite'
 
 module Catherder
   class Human < Sprite
-    SPEED = 2
+    SPEED = 10
+
     def initialize(window)
       super window
       load_image "human.png"
@@ -12,16 +13,20 @@ module Catherder
     end
 
     def update
+      super
+
+      adjusted_speed = SPEED * elapsed_frames
+
       if window.button_down? Gosu::KbLeft
-        self.x -= SPEED
+        self.x -= adjusted_speed
       elsif window.button_down? Gosu::KbRight
-        self.x += SPEED
+        self.x += adjusted_speed
       end
 
       if window.button_down? Gosu::KbUp
-        self.y -= SPEED
+        self.y -= adjusted_speed
       elsif window.button_down? Gosu::KbDown
-        self.y += SPEED
+        self.y += adjusted_speed
       end
     end
   end
