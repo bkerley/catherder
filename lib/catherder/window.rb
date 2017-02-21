@@ -9,12 +9,21 @@ module Catherder
       floor = Floor.new(self)
       self.human = Human.new(self)
       self.bowl = Bowl.new(self)
-      self.cat = Cat.new(window: self,
-                         human: self.human,
-                         bowl: self.bowl)
+      self.cats = 100.times.map{Cat.new(window: self,
+                                       human: self.human,
+                                       bowl: self.bowl)}
+      self.cat = cats.first
 
-      @sprites = [floor, bowl, cat, human]
       self.congratulations = Congratulations.new(self)
+
+      @sprites = [floor, bowl, *cats, human, congratulations]
+    end
+
+    def button_up(id)
+      if id == Gosu::KB_SPACE
+        @sprites.each(&:restart_game)
+      end
+      super
     end
 
     def update

@@ -15,7 +15,10 @@ module Catherder
 
       self.human = human
       self.bowl = bowl
+      restart_game
+    end
 
+    def restart_game
       self.state = :waiting
 
       load_image "cat.png"
@@ -27,12 +30,11 @@ module Catherder
     def update
       super
 
-      check_win
-
       case state
       when :waiting
         waiting_update
       when :running
+        check_win
         running_update
       end
     end
@@ -46,9 +48,6 @@ module Catherder
     def running_update
       if step_count <= 0
         self.state = :waiting
-        puts "arrived"
-        pp x
-        pp y
         return
       end
 
@@ -82,13 +81,6 @@ module Catherder
 
 
       self.step_count = magnitude / SPEED
-
-      puts "count/angle/magnitude"
-      pp step_count
-      pp angle
-      pp magnitude
-      puts "x #{x} -> #{target_x} + #{delta_x} % #{step_x}"
-      puts "y #{y} -> #{target_y} + #{delta_y} % #{step_y}"
 
       self.state = :running
     end

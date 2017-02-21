@@ -12,6 +12,9 @@ module Catherder
       self.y = 0
     end
 
+    def restart_game
+    end
+
     def update
       self.previous_ms = self.current_ms
       self.current_ms = Gosu.milliseconds

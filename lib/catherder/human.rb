@@ -8,7 +8,10 @@ module Catherder
     def initialize(window)
       super window
       load_image "human.png"
+      restart_game
+    end
 
+    def restart_game
       self.x = self.image.width
       self.y = window.height / 2
     end
